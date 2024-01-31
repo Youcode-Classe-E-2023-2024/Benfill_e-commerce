@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->string("description");
-            $table->integer("price");
-            $table->decimal("quantity");
-            $table->string("category");
+            $table->decimal("price");
+            $table->integer("quantity");
+            $table->string("category_id");
+            $table->foreign("category_id")->references("id")->on("categories");
             $table->timestamps();
         });
     }
