@@ -12,7 +12,7 @@ class ProductController extends Controller
     {
         $products = Product::leftJoin('categories', 'products.category', '=', 'categories.id')
             ->select('products.*', 'categories.category as category_name')
-            ->paginate(5);
+            ->paginate(4);
         return view("pages.products", compact("products"));
     }
 
@@ -25,6 +25,8 @@ class ProductController extends Controller
             'quantity' => 'required|numeric',
             'category' => 'required|numeric'
         ]);
+
+
         $product = new Product;
         $product->name = $request->name;
         $product->description = $request->description;
@@ -82,6 +84,22 @@ class ProductController extends Controller
         $product->category = $request->category;
         $product->save();
         return redirect('products')->with('status', 'Product Form Data Has Been Updated');
+    }
+
+    function sort(Request $request)
+    {
+        if ($request->sort_by == "alphabet") {
+            $products = Product::leftJoin('categories', 'products.category', '=', 'categories.id')
+                ->select('products.*', 'categories.category as category_name')
+                ->orderBy("name")
+                ->paginate(4);
+        } else {
+            $products = Product::leftJoin('categories', 'products.category', '=', 'categories.id')
+                ->select('products.*', 'categories.category as category_name')
+                ->orderBy("created_at", 'desc')
+                ->paginate(4);
+        }
+        return view("pages.products", compact("products"));
     }
 }
 
