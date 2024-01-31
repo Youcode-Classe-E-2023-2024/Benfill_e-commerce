@@ -22,7 +22,11 @@ Route::get("/add", [CategoryController::class, "index"])->name("category.index")
 Route::post("store-form", [ProductController::class, "store"]);
 
 Route::get("products", [ProductController::class, "index"]);
+Route::get("product/{id}", [ProductController::class, "show"]);
 
 Route::get("edit/{id}", [ProductController::class, "edit"]);
+Route::post("update/{id}", [ProductController::class, "update"]);
 
 Route::get("delete/{id}", [ProductController::class, "delete"]);
+
+Route::get("sort", [ProductController::class, "sort"]);
