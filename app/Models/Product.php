@@ -14,7 +14,8 @@ class Product extends Model
         "description",
         "quantity",
         "price",
-        "category_id"
+        "category_id",
+        "picture"
     ];
 
 }

@@ -23,11 +23,16 @@ class ProductController extends Controller
             'description' => 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
-            'category' => 'required|numeric'
+            'category' => 'required|numeric',
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
 
         $product = new Product;
+        $filename = time().$request->file('picture')->getClientOriginalName();
+        $path = $request->file('picture')->storeAs('image', $filename, 'public');
+        $product->picture = '/storage/' . $path;
+
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
