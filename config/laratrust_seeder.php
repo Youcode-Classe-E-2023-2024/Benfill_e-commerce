@@ -12,20 +12,18 @@ return [
     'truncate_tables' => true,
 
     'roles_structure' => [
-        'superadministrator' => [
+        'admin' => [
             'users' => 'c,r,u,d',
-            'payments' => 'c,r,u,d',
-            'profile' => 'r,u',
+            'products' => 'c,r,u,d',
+            'profile' => 'r,u,d',
         ],
-        'administrator' => [
-            'users' => 'c,r,u,d',
-            'profile' => 'r,u',
+        'seller' => [
+            'products' => 'c,r,u,d',
+            'profile' => 'r,u,d',
         ],
-        'user' => [
-            'profile' => 'r,u',
-        ],
-        'role_name' => [
-            'module_1_name' => 'c,r,u,d',
+        'buyer' => [
+            'products' => 'r',
+            'profile' => 'r,u,d'
         ],
     ],
 
